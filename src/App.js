@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./components/Home";
-import Login from "./components/logins/Login";
+import Login  from "./components/logins/Login";
 import { Navbar } from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
@@ -15,6 +15,7 @@ function App() {
 
         </div>
       </div>
+        <Login />
     </body>
   );
 }

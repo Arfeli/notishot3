@@ -1,6 +1,51 @@
 import React from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import { useNavigate} from "react-router-dom";
 
 const Login = () => {
+  const cookies = new Cookies();
+  const history = (useNavigate);
+  const API = "https://notishot2-production.up.railway.app/api/v1/public";
+  const [state, setState] = React.useState({
+    form: {
+      username: "",
+      password: "",
+    },
+  });
+  const handleChange = async (e) => {
+    await setState({
+      form: {
+        ...state.form,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
+  //const enviarRegistrar = () => {
+  //  history.push("/register");
+  //};
+  const enviarPortal = () => {
+    history.push("/");
+  };
+  const iniciarSesion = async () => {
+    await axios
+      .post(API, {
+        email: state.form.username,
+        password: state.form.password
+      })
+      .then((response) => {
+        console.log(response);
+        cookies.set("id", response.data.data.role.id, { path: "/" });
+        cookies.set("nick_name", response.data.data.nick_name, { path: "/" });
+        cookies.set("role_key", response.data.data.role.role_key, { path: "/" });
+        cookies.set("token", response.data.data.token, { path: "/" });
+        window.location.href = "/users";
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Contraseña o Usuario incorrecto");
+      });
+  };
   return (
     <body>
       <div className="container-scroller">
@@ -13,11 +58,11 @@ const Login = () => {
                   <form>
                     <div className="form-group">
                       <label>Username or email *</label>
-                      <input type="text" className="form-control p_input" />
+                      <input type="text" name="username" className="form-control p_input" />
                     </div>
                     <div className="form-group">
                       <label>Password *</label>
-                      <input type="text" className="form-control p_input" />
+                      <input type="password" name="password" className="form-control p_input" />
                     </div>
                     <div className="form-group d-flex align-items-center justify-content-between">
                       <div className="form-check">
@@ -34,6 +79,7 @@ const Login = () => {
                       <button
                         type="submit"
                         className="btn btn-primary btn-block enter-btn"
+                        onClick={iniciarSesion}
                       >
                         Login
                       </button>
