@@ -56,14 +56,14 @@ const Login = () => {
               <div className="card col-lg-4 mx-auto">
                 <div className="card-body px-5 py-5">
                   <h3 className="card-title text-left mb-3">Login</h3>
-                  <form>
+                  
                     <div className="form-group">
                       <label>Username or email *</label>
-                      <input type="text" name="username" className="form-control p_input" />
+                      <input type="text" name="username" className="form-control p_input" onChange={handleChange} />
                     </div>
                     <div className="form-group">
                       <label>Password *</label>
-                      <input type="password" name="password" className="form-control p_input" />
+                      <input type="password" name="password" className="form-control p_input" onChange={handleChange} />
                     </div>
                     <div className="form-group d-flex align-items-center justify-content-between">
                       <div className="form-check">
@@ -96,7 +96,7 @@ const Login = () => {
                     <p className="sign-up">
                       Don't have an Account?<a href="#"> Sign Up</a>
                     </p>
-                  </form>
+                 
                 </div>
               </div>
             </div>

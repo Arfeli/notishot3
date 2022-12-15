@@ -9,13 +9,7 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <body>
-      <div class="container-scroller">
-        <Sidebar />
-        <div class="container-fluid page-body-wrapper">
-        <Navbar />
-        <Home />
-        </div>
-      </div>
+   
         <Login />
     </body>
   );
