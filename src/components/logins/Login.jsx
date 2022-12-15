@@ -6,7 +6,7 @@ import { useNavigate} from "react-router-dom";
 const Login = () => {
   const cookies = new Cookies();
   const history = (useNavigate);
-  const API = "https://notishot2-production.up.railway.app/api/v1/public";
+  const API = "https://notishot2-production.up.railway.app/api/v1/login";
   const [state, setState] = React.useState({
     form: {
       username: "",
@@ -39,7 +39,8 @@ const Login = () => {
         cookies.set("nick_name", response.data.data.nick_name, { path: "/" });
         cookies.set("role_key", response.data.data.role.role_key, { path: "/" });
         cookies.set("token", response.data.data.token, { path: "/" });
-        window.location.href = "/users";
+        
+        window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);
