@@ -1,7 +1,11 @@
 import React from "react";
+import Cookies from "universal-cookie";
 
 const Sidebar = () => {
+  const cookies = new Cookies();
   return (
+    <>
+    {cookies.get("role_key") === "administrador" ? (
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <div className="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <a className="sidebar-brand brand-logo" href="index.html">
@@ -24,7 +28,7 @@ const Sidebar = () => {
                 <span className="count bg-success"></span>
               </div>
               <div className="profile-name">
-                <h5 className="mb-0 font-weight-normal">Henry Klein</h5>
+                <h5 className="mb-0 font-weight-normal">{cookies.get("nick_name")}</h5>
                 <span>Gold Member</span>
               </div>
             </div>
@@ -226,7 +230,9 @@ const Sidebar = () => {
         </li>
       </ul>
     </nav>
-  );
+    ) : (<></>)}
+    </>
+    );
 };
 
 export default Sidebar;

@@ -102,11 +102,11 @@ const TraerUsers = () => {
                                                                 />
                                                                 <span className="pl-2">Henry Klein</span>
                                                             </td>
-                                                            <td> 02312 </td>
-                                                            <td> $14,500 </td>
-                                                            <td> Dashboard </td>
-                                                            <td> Credit card </td>
-                                                            <td> 04 Dec 2019 </td>
+                                                            <td> {user.nick_name} </td>
+                                                            <td> {user.id} </td>
+                                                            <td> {user.create_at} </td>
+                                                            <td> vemos despues </td>
+                                                            <td> {user.role}</td>
                                                             <td>
                                                                 <div className="badge badge-outline-success">
                                                                     Approved

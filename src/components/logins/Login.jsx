@@ -4,6 +4,14 @@ import Cookies from "universal-cookie";
 import { useNavigate} from "react-router-dom";
 
 const Login = () => {
+  const fotito = () => {
+
+    const photo = document.querySelector('#photo');
+    const camera = document.querySelector('#camera');
+    camera.addEventListener('change', function(e) {
+      photo.src = URL.createObjectURL(e.target.files[0]);
+    });
+  }
   const cookies = new Cookies();
   const history = (useNavigate);
   const API = "https://notishot2-production.up.railway.app/api/v1/login";
@@ -21,6 +29,7 @@ const Login = () => {
       },
     });
   };
+  
   //const enviarRegistrar = () => {
   //  history.push("/register");
   //};
@@ -55,10 +64,9 @@ const Login = () => {
             <div className="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
               <div className="card col-lg-4 mx-auto">
                 <div className="card-body px-5 py-5">
-                  <h3 className="card-title text-left mb-3">Login</h3>
-                  
+                  <h3 className="card-title text-left mb-3">Iniciar Sesion</h3>
                     <div className="form-group">
-                      <label>Username or email *</label>
+                      <label>Email*</label>
                       <input type="text" name="username" className="form-control p_input" onChange={handleChange} />
                     </div>
                     <div className="form-group">
@@ -69,11 +77,11 @@ const Login = () => {
                       <div className="form-check">
                         <label className="form-check-label">
                           <input type="checkbox" className="form-check-input" />{" "}
-                          Remember me{" "}
+                          Recuerdame{" "}
                         </label>
                       </div>
                       <a href="#" className="forgot-pass">
-                        Forgot password
+                        Olvidaste tu contraseña?
                       </a>
                     </div>
                     <div className="text-center">
@@ -82,7 +90,7 @@ const Login = () => {
                         className="btn btn-primary btn-block enter-btn"
                         onClick={iniciarSesion}
                       >
-                        Login
+                        Iniciar Sesion
                       </button>
                     </div>
                     <div className="d-flex">
@@ -94,12 +102,13 @@ const Login = () => {
                       </button>
                     </div>
                     <p className="sign-up">
-                      Don't have an Account?<a href="#"> Sign Up</a>
+                      ¿Aun no tienes cuenta?<a href="#"> Registrate</a>
                     </p>
-                 
                 </div>
               </div>
             </div>
+            <img id="photo" class="photo" style={{width: "%50" , height: "%50"}} />
+            <input type="file" accept="image/*" capture="camera" id="camera" onClick={fotito} />
           </div>
         </div>
       </div>

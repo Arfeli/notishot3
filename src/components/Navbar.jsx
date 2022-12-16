@@ -1,6 +1,18 @@
 import React from "react";
+import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const cookies = new Cookies();
+  
+  const cerrarSesion = () => {
+    cookies.remove("id", { path: "/" });
+    cookies.remove("nick_name", { path: "/" });
+    cookies.remove("role_key", { path: "/" });
+    cookies.remove("token", { path: "/" });
+
+    window.location.reload(true);
+  };
   return (
     <nav className="navbar p-0 fixed-top d-flex flex-row">
       <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
@@ -260,7 +272,7 @@ export const Navbar = () => {
                   </div>
                 </div>
                 <div className="preview-item-content">
-                  <p className="preview-subject mb-1">Log out</p>
+                  <p className="preview-subject mb-1" onClick={cerrarSesion}>Log out</p>
                 </div>
               </a>
               <div className="dropdown-divider"></div>
