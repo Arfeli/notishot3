@@ -14,10 +14,12 @@ export const Navbar = () => {
     window.location.reload(true);
   };
   return (
+    <>
+     {cookies.get("role_key") === "administrador" ? (
     <nav className="navbar p-0 fixed-top d-flex flex-row">
       <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
         <a className="navbar-brand brand-logo-mini" href="index.html">
-          <img src="assets/images/logo-mini.svg" alt="logo" />
+          <img src="assets/images/logo2.png" alt="logo" />
         </a>
       </div>
       <div className="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -28,17 +30,7 @@ export const Navbar = () => {
         >
           <span className="mdi mdi-menu"></span>
         </button>
-        <ul className="navbar-nav w-100">
-          <li className="nav-item w-100">
-            <form className="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search products"
-              />
-            </form>
-          </li>
-        </ul>
+        
         <ul className="navbar-nav navbar-nav-right">
           <li className="nav-item dropdown d-none d-lg-block">
             <a
@@ -289,5 +281,7 @@ export const Navbar = () => {
         </button>
       </div>
     </nav>
+     ) : (<></>)}
+    </>
   );
 };

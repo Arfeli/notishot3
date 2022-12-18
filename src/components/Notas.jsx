@@ -1,3 +1,6 @@
+<img id="photo" class="photo" style={{width: "%50" , height: "%50"}} />
+            <input type="file" accept="image/*" capture="camera" id="camera" onClick={fotito} />
+
 <tr>
                                                 <td>
                                                     <div className="form-check form-check-muted m-0">

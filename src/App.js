@@ -16,10 +16,14 @@ function App() {
           <Routes>
             <Route path="/s" element={<Home />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/loginn" element={<Login />} />
           </Routes>
         </Router>
       </div>
+        <Router>
+          <Routes>
+            <Route path="/loginn" element={<Login />} />
+          </Routes>
+        </Router>
     </body>
   );
 }
