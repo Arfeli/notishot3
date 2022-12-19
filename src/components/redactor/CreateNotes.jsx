@@ -4,7 +4,6 @@ import Cookies from "universal-cookie";
 
 const CreateNotes = () => {
   const cookies = new Cookies();
-  console.log("a ver")
   //const history = useNavigate;
   const API = "https://notishot2-production.up.railway.app/api/v1/writer/notes";
   const [state, setState] = React.useState({
@@ -24,15 +23,15 @@ const CreateNotes = () => {
     });
   };
   const createNotice = async () => {
+    console.log("cualquier cosa")
     await axios
-      .post(
-        API,
+      .post("https://notishot2-production.up.railway.app/api/v1/writer/notes"
+        ,
         {
-          category_id: "1",
+          category_id: '1',
           title: state.form.title,
           body: state.form.body,
           location: state.form.url,
-          resource: "vemos",
         },
         { headers: { Authorization: "Bearer " + cookies.get("token") } }
       )

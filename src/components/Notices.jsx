@@ -47,7 +47,7 @@ const Notices = () => {
         <div className="row">
           {notas.map((nota) => {
             return (
-              <div className="col-xs-4 col-sm-6 col-ls-4 col-xl-3 grid-margin stretch-card">
+              <div className="col-xs-4 col-sm-6 col-ls-6 col-xl-4 grid-margin stretch-card">
                 <div className="card">
                   <div className="card-body">
                     <div className="item">

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
-import { CloudinaryContext, Image } from "cloudinary-react";
+
 
 const Login = () => {
   console.log("a ver")
