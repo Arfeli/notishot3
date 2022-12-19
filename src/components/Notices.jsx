@@ -25,14 +25,14 @@ function GetNotices() {
             photo: item.location,
           };
         });
-        console.log(noticiasMapeadasParaLista);
+        console.log("este no se repite");
         return noticiasMapeadasParaLista;
       })
       .catch((error) => {
         console.log(error);
       });
     setNotas(notas);
-    console.log(notas);
+    console.log("se repite?");
   }
   useEffect(() => {
     notasTraidas();

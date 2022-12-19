@@ -15,7 +15,7 @@ export const Navbar = () => {
   };
   return (
     <>
-     {cookies.get("role_key") === "administrador" ? (
+     {cookies.get("role_key") === "administrador" || "redactor" || "lector"? (
     <nav className="navbar p-0 fixed-top d-flex flex-row">
       <div className="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
         <a className="navbar-brand brand-logo-mini" href="index.html">

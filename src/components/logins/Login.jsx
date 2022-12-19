@@ -5,13 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { CloudinaryContext, Image } from "cloudinary-react";
 
 const Login = () => {
-  const fotito = () => {
-    const photo = document.querySelector("#photo");
-    const camera = document.querySelector("#camera");
-    camera.addEventListener("change", function (e) {
-      photo.src = URL.createObjectURL(e.target.files[0]);
-    });
-  };
+  console.log("a ver")
+  
   const cookies = new Cookies();
   const history = useNavigate;
   const API = "https://notishot2-production.up.railway.app/api/v1/login";
@@ -119,12 +114,7 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <CloudinaryContext cloudName="dqqv30lqc">
-              <div>
-                <Image publicId="sample" width="50" />
-              </div>
-              <Image publicId="sample" width="0.5" />
-            </CloudinaryContext>
+            
           </div>
         </div>
       </div>
