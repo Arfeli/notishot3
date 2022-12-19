@@ -4,6 +4,8 @@ import Users from "./components/admin/Users";
 import Home from "./components/Home";
 import Login  from "./components/logins/Login";
 import { Navbar } from "./components/Navbar";
+import Notices from "./components/Notices";
+import CreateNotes from "./components/redactor/CreateNotes";
 import Sidebar from "./components/Sidebar";
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Routes>
             <Route path="/s" element={<Home />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/" element={<Notices />} />
+            <Route path="/create" element={<CreateNotes />} />
           </Routes>
         </Router>
       </div>
