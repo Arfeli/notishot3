@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
@@ -23,7 +23,6 @@ const Users = () => {
       })
       .then((response) => {
         const usuariosMapeadosParaLista = response.data.data.map((item) => {
-          console.log(item);
           return {
             nick_name: item.nick_name,
             email: item.email,
@@ -33,7 +32,6 @@ const Users = () => {
             id: item.id,
           };
         });
-        console.log(usuariosMapeadosParaLista);
         return usuariosMapeadosParaLista;
       })
       .catch((error) => {
@@ -50,13 +48,10 @@ const TraerUsers = () => {
   //const history = useNavigate();
   const [users] = Users();
   const [items, setItems] = React.useState();
-  //const enviarRegistrar = (e) => {
-  //    history.push('/gestion/' + e.target.id);
-  //};
-  const sendProfile = (e) => {
-    window.location.href = ("/edituser/" + e.target.value);
-  };
-
+  const saveObject = () => {
+    const vemos = {users}
+    console.log(vemos)
+  }
   return (
     <div className="main-panel">
       <div className="content-wrapper">
@@ -145,15 +140,17 @@ const TraerUsers = () => {
                               </td>
                               <td> vemos despues </td>
                               <td>
+                                <Link to={`${user.id}`}>
                                 <button
                                   type="button"
                                   class="btn btn-outline-secondary btn-icon-text"
                                   value={user.id}
-                                  onClick={sendProfile}
+                                  onClick={saveObject}
                                 >
                                   Editar
                                   <i class="mdi mdi-file-check btn-icon-append"></i>
                                 </button>
+                                </Link>
                               </td>
                               <td>
                                 <div className="badge badge-outline-success">

@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import EditUser from "./components/admin/EditUser";
 import Users from "./components/admin/Users";
 import Home from "./components/Home";
 import Login  from "./components/logins/Login";
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/s" element={<Home />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/users/:id" element={<EditUser />} />
             <Route path="/" element={<Notices />} />
           </Routes>
         </Router>
@@ -29,7 +31,6 @@ function App() {
             <Route path="/loginn" element={<Login />} />
             <Route path="/newuser" element={<Register />} />
             <Route path="/create" element={<CreateNotes />} />
-            <Route path="/edituser/*" element={<CreateNotes />} />
           </Routes>
         </Router>
     </body>
