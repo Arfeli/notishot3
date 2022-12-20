@@ -8,7 +8,7 @@ const Users = () => {
   const history = useNavigate();
   if (cookies.get("token") !== "1") {
     const mandarPortal = () => {
-      history.push("/");
+      window.location.href = "/";;
     };
   }
   const API =
@@ -53,6 +53,10 @@ const TraerUsers = () => {
   //const enviarRegistrar = (e) => {
   //    history.push('/gestion/' + e.target.id);
   //};
+  const sendProfile = (e) => {
+    window.location.href = ("/edituser/" + e.target.value);
+  };
+
   return (
     <div className="main-panel">
       <div className="content-wrapper">
@@ -65,21 +69,12 @@ const TraerUsers = () => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th>
-                          <div className="form-check form-check-muted m-0">
-                            <label className="form-check-label">
-                              <input
-                                type="checkbox"
-                                className="form-check-input"
-                              />
-                            </label>
-                          </div>
-                        </th>
                         <th> Nick </th>
-                        <th> Numero </th>
-                        <th> Creacion </th>
+                        <th> email</th>
                         <th> Rol </th>
                         <th> Estado</th>
+                        <th> Estado</th>
+                        <th> editar</th>
                         <th> Estado</th>
                       </tr>
                     </thead>
@@ -89,30 +84,20 @@ const TraerUsers = () => {
                           <>
                             <tr key={user.nick_name}>
                               <td>
-                                <div className="form-check form-check-muted m-0">
-                                  <label className="form-check-label">
-                                    <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                    />
-                                  </label>
-                                </div>
-                              </td>
-                              <td>
                                 <img
                                   src="assets/images/faces/face1.jpg"
                                   alt="image"
                                 />
-                                <span className="pl-2">Henry Klein</span>
+                                <span className="pl-2">{user.nick_name}</span>
                               </td>
-                              <td> </td>
-                              <td> {user.nick_name} </td>
+                              <td> {user.email}</td>
+
                               {user.role_id === 2 ? (
                                 <p>
                                   <br />
                                   <button
                                     type="button"
-                                    class="btn btn-rounded btn-danger btn-fw"
+                                    class="btn btn-inverse-danger btn-fw"
                                   >
                                     Administrador
                                   </button>
@@ -122,7 +107,7 @@ const TraerUsers = () => {
                                   <br />
                                   <button
                                     type="button"
-                                    class="btn btn-rounded btn-warning btn-fw"
+                                    class="btn btn-inverse-warning btn-fw"
                                   >
                                     Moderador
                                   </button>
@@ -132,7 +117,7 @@ const TraerUsers = () => {
                                   <br />
                                   <button
                                     type="button"
-                                    class="btn btn-rounded btn-primary btn-fw"
+                                    class="btn btn-inverse-primary btn-fw"
                                   >
                                     Lector
                                   </button>
@@ -142,16 +127,34 @@ const TraerUsers = () => {
                                   <br />
                                   <button
                                     type="button"
-                                    class="btn btn-rounded btn-success btn-fw"
+                                    class="btn btn-inverse-success btn-fw"
                                   >
                                     Rector
                                   </button>
                                 </p>
                               )}
 
-                              <td> {user.create_at} </td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn btn-success btn-rounded btn-icon"
+                                  none
+                                >
+                                  <i class="mdi mdi-check-all"></i>
+                                </button>
+                              </td>
                               <td> vemos despues </td>
-                              <td> {user.role}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn btn-outline-secondary btn-icon-text"
+                                  value={user.id}
+                                  onClick={sendProfile}
+                                >
+                                  Editar
+                                  <i class="mdi mdi-file-check btn-icon-append"></i>
+                                </button>
+                              </td>
                               <td>
                                 <div className="badge badge-outline-success">
                                   Aprobado

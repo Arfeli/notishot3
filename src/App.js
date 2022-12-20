@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Users from "./components/admin/Users";
 import Home from "./components/Home";
 import Login  from "./components/logins/Login";
+import Register from "./components/logins/Register";
 import { Navbar } from "./components/Navbar";
 import Notices from "./components/Notices";
 import CreateNotes from "./components/redactor/CreateNotes";
@@ -26,7 +27,9 @@ function App() {
         <Router>
           <Routes>
             <Route path="/loginn" element={<Login />} />
+            <Route path="/newuser" element={<Register />} />
             <Route path="/create" element={<CreateNotes />} />
+            <Route path="/edituser/*" element={<CreateNotes />} />
           </Routes>
         </Router>
     </body>
