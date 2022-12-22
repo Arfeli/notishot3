@@ -8,7 +8,7 @@ const Users = () => {
   const history = useNavigate();
   if (cookies.get("token") !== "1") {
     const mandarPortal = () => {
-      history.push = ("/");;
+      window.location.href = "/";;
     };
   }
   const API =

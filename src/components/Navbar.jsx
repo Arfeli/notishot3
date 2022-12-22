@@ -85,7 +85,7 @@ export const Navbar = () => {
                 </div>
               </li>
               <li className="nav-item nav-settings d-none d-lg-block">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="./create">
                   <i className="mdi mdi-view-grid"></i>
                 </a>
               </li>
@@ -235,7 +235,7 @@ export const Navbar = () => {
                       alt=""
                     />
                     <p className="mb-0 d-none d-sm-block navbar-profile-name">
-                      Henry Klein
+                      {cookies.get("nick_name")}
                     </p>
                     <i className="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
@@ -244,7 +244,7 @@ export const Navbar = () => {
                   className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                   aria-labelledby="profileDropdown"
                 >
-                  <h6 className="p-3 mb-0">Profile</h6>
+                  <h6 className="p-3 mb-0">Perfil</h6>
                   <div className="dropdown-divider"></div>
                   <a className="dropdown-item preview-item">
                     <div className="preview-thumbnail">
@@ -253,7 +253,7 @@ export const Navbar = () => {
                       </div>
                     </div>
                     <div className="preview-item-content">
-                      <p className="preview-subject mb-1">Settings</p>
+                      <p className="preview-subject mb-1">configuracion</p>
                     </div>
                   </a>
                   <div className="dropdown-divider"></div>
