@@ -1,16 +1,19 @@
-import React from 'react'
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import axios from "axios";
 
-const EditUser = (algo) => {
+const Users = () => {
   const cookies = new Cookies();
-  const { id } = useParams();
-  console.log(id)
-  
+  const history = useNavigate();
+  if (cookies.get("token") !== "1") {
+    const mandarPortal = () => {
+      window.location.href = "/";
+    };
+  }
   const API =
     "https://notishot2-production.up.railway.app/api/v1/admin/usuarios";
-  const [users, setUsers] = React.useState([]);
+  const [users, setUsers] = useState([]);
   async function usuariosTraidos() {
     const users = await axios
       .get(API, {
@@ -20,7 +23,6 @@ const EditUser = (algo) => {
       })
       .then((response) => {
         const usuariosMapeadosParaLista = response.data.data.map((item) => {
-        console.log(response)
           return {
             nick_name: item.nick_name,
             email: item.email,
@@ -30,7 +32,6 @@ const EditUser = (algo) => {
             id: item.id,
           };
         });
-        console.log(usuariosMapeadosParaLista);
         return usuariosMapeadosParaLista;
       })
       .catch((error) => {
@@ -38,43 +39,236 @@ const EditUser = (algo) => {
       });
     setUsers(users);
   }
-  React.useEffect(() => {
+
+  useEffect(() => {
     usuariosTraidos();
   }, []);
   return [users];
-}
-  const updateUser = () => {
+};
+
+const TraerUsers = () => {
+  //const history = useNavigate();
+  const cookies = new Cookies();
+  const [edit, setEdit] = React.useState({
+    form: {
+      role_id: "",
+      id: "",
+    },
+  });
+  const handleChange = (e) => {
+    setEdit({
+      form: {
+        ...edit.form,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
+  console.log(edit);
+
+  async function editarUsuario() {
+    await axios
+      .put(
+        `https://notishot2-production.up.railway.app/api/v1/admin/usuarios/${edit.form.id}`,
+        {
+          role_id: edit.form.role_id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + cookies.get("token"),
+          },
+        }
+      )
+
+      .then((response) => {
+        console.log(response);
+        alert("se cambio el rol del usuario");
+        window.location.href = "/users";
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("estamos viendo el put");
+        alert("se subio como el tuje");
+      });
+  }
+  const [users] = Users();
+  const [items, setItems] = React.useState();
 
   return (
-    <div class="card-body">
-                    <h4 class="card-title">Default form</h4>
-                    <p class="card-description"> Basic form layout </p>
-                   
-                      <div class="form-group">
-                        <label for="exampleInputUsername1">Username</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" />
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" />
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                        <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password" />
-                      </div>
-                      <div class="form-check form-check-flat form-check-primary">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input" /> Remember me <i class="input-helper" ></i></label>
-                      </div>
-                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                      <button class="btn btn-dark">Cancel</button>
-                 
-                  </div>
-  )
-}
+    <div className="main-panel">
+      <div className="content-wrapper">
+        <div className="row ">
+          <div className="col-12 grid-margin">
+            <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">Usuarios</h4>
+                <div className="table-responsive">
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th> Nick </th>
+                        <th> email</th>
+                        <th>id</th>
+                        <th> Rol </th>
+                        <th> Estado</th>
+                        <th> Estado</th>
+                        <th> editar</th>
+                        <th> Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {users.map((user) => {
+                        return (
+                          <>
+                            <tr key={user.nick_name}>
+                              <td>
+                                <span className="pl-2">{user.nick_name}</span>
+                              </td>
+                              <td> {user.email}</td>
+                              <td>{user.id}</td>
+                              <td>
+                              {user.role_id === 2 ? (
+                                <p>
+                                  <br />
+                                  <button
+                                    type="button"
+                                    class="btn btn-inverse-danger btn-fw"
+                                  >
+                                    Administrador
+                                  </button>
+                                </p>
+                              ) : user.role_id === 3 ? (
+                                <>
+                                  <input
+                                    type="text"
+                                    style={{width: "45px"}}
+                                    name="role_id"
+                                    placeholder="ROL"
+                                    onChange={handleChange}
+                                  ></input>
+                                  <input
+                                    type="text"
+                                    style={{width: "45px", margin: "25px"}}
+                                    name="id"
+                                    placeholder="ID"
+                                    onChange={handleChange}
+                                  ></input>
+                                </>
+                              ) : user.role_id === 4 ? (
+                                <>
+                                  <input
+                                    type="text"
+                                    style={{width: "45px"}}
+                                    name="role_id"
+                                    placeholder="ROL"
+                                    onChange={handleChange}
+                                  ></input>
+                                  <input
+                                    type="text"
+                                    style={{width: "45px", margin: "25px"}}
+                                    name="id"
+                                    placeholder="ID"
+                                    onChange={handleChange}
+                                  ></input>
+                                </>
+                              ) : (
+                                <>
+                                  <input
+                                    type="text"
+                                    style={{width: "45px"}}
+                                    name="role_id"
+                                    placeholder="ROL"
+                                    onChange={handleChange}
+                                  ></input>
+                                  <input
+                                    type="text"
+                                    style={{width: "45px", margin: "25px"}}
+                                    name="id"
+                                    placeholder="ID"
+                                    onChange={handleChange}
+                                  ></input>
+                                </>
+                              )}
+                              </td>
+                              <td>
+                                <button 
+                                  type="button"
+                                  class="btn btn-success btn-rounded btn-icon"
+                                  none
+                                >
+                                  <i class="mdi mdi-check-all"></i>
+                                </button>
+                              </td>
+                              <td> {user.role_id === 2 ? (
+                                <p>
+                                  <br />
+                                  <button
+                                    type="button"
+                                    class="btn btn-inverse-danger btn-fw"
+                                  >
+                                    Administrador
+                                  </button>
+                                </p>
+                              ) : user.role_id === 3 ? (
+                                <p>
+                                  <br />
+                                  <button
+                                    type="button"
+                                    class="btn btn-inverse-warning btn-fw"
+                                  >
+                                    Moderador
+                                  </button>
+                                </p>
+                              ) : user.role_id === 4 ? (
+                                <p>
+                                  <br />
+                                  <button
+                                    type="button"
+                                    class="btn btn-inverse-primary btn-fw"
+                                  >
+                                    Lector
+                                  </button>
+                                </p>
+                              ) : (
+                                <p>
+                                  <br />
+                                  <button
+                                    type="button"
+                                    class="btn btn-inverse-success btn-fw"
+                                  >
+                                    Rector
+                                  </button>
+                                </p>
+                              )}</td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn btn-outline-secondary btn-icon-text"
+                                  value={user.id}
+                                  onClick={editarUsuario}
+                                >
+                                  Editar
+                                  <i class="mdi mdi-file-check btn-icon-append"></i>
+                                </button>
+                              </td>
+                              <td>
+                                <div className="badge badge-outline-success">
+                                  Aprobado
+                                </div>
+                              </td>
+                            </tr>
+                          </>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default updateUser
+export default TraerUsers;

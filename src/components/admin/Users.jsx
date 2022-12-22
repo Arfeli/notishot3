@@ -8,7 +8,7 @@ const Users = () => {
   const history = useNavigate();
   if (cookies.get("token") !== "1") {
     const mandarPortal = () => {
-      window.location.href = "/";;
+      history.push = ("/");;
     };
   }
   const API =
@@ -140,7 +140,7 @@ const TraerUsers = () => {
                               </td>
                               <td> vemos despues </td>
                               <td>
-                                <Link to={`${user.id}`}>
+                                <Link to={"../edituser"}>
                                 <button
                                   type="button"
                                   class="btn btn-outline-secondary btn-icon-text"

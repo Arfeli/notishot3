@@ -19,10 +19,11 @@ function App() {
         <Sidebar />
         <Router>
           <Routes>
-            <Route path="/s" element={<Home />} />
+            <Route path="/admin" element={<Home />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/users/:id" element={<EditUser />} />
+            <Route path="/edituser" element={<EditUser />} />
             <Route path="/" element={<Notices />} />
+            <Route path="/create" element={<CreateNotes />} />
           </Routes>
         </Router>
       </div>
@@ -30,7 +31,6 @@ function App() {
           <Routes>
             <Route path="/loginn" element={<Login />} />
             <Route path="/newuser" element={<Register />} />
-            <Route path="/create" element={<CreateNotes />} />
           </Routes>
         </Router>
     </body>
