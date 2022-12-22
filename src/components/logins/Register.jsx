@@ -34,7 +34,7 @@ const Register = () => {
       .then((response) => {
         console.log(response);
         alert("Usuario creado Correctamente");
-        window.location.href = "/";
+        window.location.href = "/loginn";
       })
       .catch((error) => {
         console.log(error);

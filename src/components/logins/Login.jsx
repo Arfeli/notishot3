@@ -46,7 +46,7 @@ const Login = () => {
         });
         cookies.set("token", response.data.data.token, { path: "/" });
 
-        window.location.href = "/s";
+        window.location.href = "/home";
       })
       .catch((error) => {
         console.log(error);
@@ -109,7 +109,7 @@ const Login = () => {
                     </button>
                   </div>
                   <p className="sign-up">
-                    ¿Aun no tienes cuenta?<a href="#"> Registrate</a>
+                    ¿Aun no tienes cuenta?<a href="../newuser"> Registrate</a>
                   </p>
                 </div>
               </div>
